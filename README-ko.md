@@ -157,19 +157,21 @@ npm test
 ```
 {
   "$class": "org.acme.product.auction.AddProduct",
+  "productId": "p1",
   "description": "Sample Product",
   "owner": "resource:org.acme.product.auction.Seller#auction@acme.org"
 }
 ```
 제품 및 판매자 레지스트리를 확인하여 트랜잭션을 확인할 수 있습니다.
 
-위의 제품에 대한 제품 목록을 작성하려면 제품 레지스트리에서 `ProductID`를 복사하십시오. 그런 다음 `StartBidding` 트랜잭션을 제출합니다. `<ProductID>`부분을 방금 복사한 제품 ID로 변경하여 제출하셔야 합니다.
+위의 제품에 대한 제품 목록을 작성하려면 `StartBidding` 트랜잭션을 제출합니다.
 
 ```
 {
   "$class": "org.acme.product.auction.StartBidding",
+  "listingId": "l1",
   "reservePrice": 50,
-  "product": "resource:org.acme.product.auction.Product#<ProductID>"
+  "product": "resource:org.acme.product.auction.Product#p1"
 }
 ```
 
@@ -183,13 +185,12 @@ npm test
 ![사용자 선택](images/select-member.png)
 
 
-> `ListingID`는 `ProductListing` 레지스트리에서 복사한 리스트의 ID입니다.
 
 ```
 {
   "$class": "org.acme.product.auction.Offer",
   "bidPrice": 50,
-  "listing": "resource:org.acme.product.auction.ProductListing#<ListingID>",
+  "listing": "resource:org.acme.product.auction.ProductListing#l1",
   "member": "resource:org.acme.product.auction.Member#memberA@acme.org"
 }
 ```
@@ -198,7 +199,7 @@ npm test
 {
   "$class": "org.acme.product.auction.Offer",
   "bidPrice": 100,
-  "listing": "resource:org.acme.product.auction.ProductListing#<ListingID>",
+  "listing": "resource:org.acme.product.auction.ProductListing#l1",
   "member": "resource:org.acme.product.auction.Member#memberB@acme.org"
 }
 ```
@@ -212,7 +213,7 @@ npm test
 ```
 {
   "$class": "org.acme.product.auction.CloseBidding",
-  "listing": "resource:org.acme.product.auction.ProductListing#<ListingID>"
+  "listing": "resource:org.acme.product.auction.ProductListing#l1"
 }
 ```
 
@@ -220,7 +221,7 @@ npm test
 
 제품 판매 여부를 확인하려면 `ProductListing` 자산 레지스트리를 클릭하고 제품의 소유자를 확인해야 합니다. 최고 입찰액은 소유자인 `memberB@acme.org`가 제출했으므로 `memberB@acme.org`가 제품의 소유자여야 합니다.
 
-`<ListingID>`로 ProductListing의 상태가 `SOLD`인지 확인할 수 있습니다.
+`l1`인 ProductListing의 상태가 `SOLD`인지 확인할 수 있습니다.
 
 ![Product Listing Sold](images/soldlisting.png)
 
@@ -252,9 +253,9 @@ composer network ping --card admin@product-auction
 다음과 같은 결과를 확인할 수 있습니다:
 ```
 The connection to the network was successfully tested: product-auction
-	version: 0.19.0
+	version: 0.19.5
 	participant: org.hyperledger.composer.system.NetworkAdmin#admin
-  identity: org.hyperledger.composer.system.Identity#6424cb78d96d733e78ebc42fbba95c7113a311b10e8389a55993b9f5f319c410
+  identity: org.hyperledger.composer.system.Identity#5b057b5ed98979e814a2c5792f853f03ec2f6cda378058eb4a4dda390cb86dee
 
 
 Command succeeded
