@@ -32,7 +32,7 @@
 * 도커
 
 ## 애플리케이션 워크플로우 도표 
-![애플리케이션 워크플로우](images/GettingStartedWComposer-arch-diagram.png)
+![애플리케이션 워크플로우](images/arch-smart-contract.png)
 
 여러 참가자 생성 및 ACL 추가
 * 추가적인 참가자 추가
@@ -138,15 +138,12 @@ npm test
 }
 ```
 
-이제 **Access Control**을 추가할 준비가 되었습니다. 먼저 `admin` 탭을 클릭하여 참가자에게 **새로운 ID**를 발급하고, 생성한 ID를 월렛에 추가하십시오. 아래 이미지와 같이 지침을 따르십시오:
+이제 **Access Control**을 추가할 준비가 되었습니다. 먼저 `admin` 탭을 클릭하여 참가자에게 **새로운 ID**를 발급합니다. 주의: 생성한 ID는 자동으로 월렛에 추가됩니다.
+아래 이미지와 같이 지침을 따르십시오:
 
-*실제로 월렛에 추가하려면 옵션 2에서 +add to my Wallet을 클릭하십시오.
-
-![Admin Tab](images/admintab.png)
+![Admin Tab](images/IssueIDScreen.png)
 
 ![Generate New Id](images/generateNewId.png)
-
-![Add to Wallet](images/addtowallet.png)
 
 ![Ids to Wallet](images/idstowallet.png)
 
@@ -181,7 +178,11 @@ npm test
 
 이제 회원 참여자는 제품 리스트에 입찰하기 위해 `Offer` 트랜젝션을 제출할 수 있습니다.
 
-각 `member id`에 대해 `Wallet tab`에서 사용자 ID를 선택합니다. `Offer` 트랜젝션을 제출하려면 `test tab` 선택하여 `Submit Transaction` 버튼을 클릭하십시오.
+각 `member id`에 대해 지금 우상단에 `Seller`라고 표시되는 탭에서 사용자 ID를 선택합니다. 왼쪽에서 MemberA 를 선택하고 그림처럼 `use now` 를 클릭합니다.
+
+![사용자 선택](images/select-member.png)
+
+
 > `ListingID`는 `ProductListing` 레지스트리에서 복사한 리스트의 ID입니다.
 
 ```
@@ -238,9 +239,9 @@ npm test
 [하이퍼레저 패브릭 시작하기](https://github.com/IBM/BlockchainNetwork-CompositeJourney/blob/master/README-ko.md#2-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A0%88%EC%A0%80-%ED%8C%A8%EB%B8%8C%EB%A6%AD-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)가이드를 따라 로컬 패브릭을 시작하십시오. 이제 디렉토리를 `product-auction.bna`파일이 들어있는 `dist`폴더로 변경하고 다음을 입력하십시오:
 ```
 cd dist
-composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName product-auction
-composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile product-auction.bna --file networkadmin.card
-composer card import --file networkadmin.card
+composer network install --card PeerAdmin@hlfv1 --archiveFile product-auction.bna
+
+composer network start --networkName product-auction --networkVersion 0.0.1  --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card composer card import --file networkadmin.card
 ```
 
 다음을 입력하여 네트워크 배포 여부를 확인할 수 있습니다:
@@ -251,8 +252,10 @@ composer network ping --card admin@product-auction
 다음과 같은 결과를 확인할 수 있습니다:
 ```
 The connection to the network was successfully tested: product-auction
-	version: 0.16.0
+	version: 0.19.0
 	participant: org.hyperledger.composer.system.NetworkAdmin#admin
+  identity: org.hyperledger.composer.system.Identity#6424cb78d96d733e78ebc42fbba95c7113a311b10e8389a55993b9f5f319c410
+
 
 Command succeeded
 ```
@@ -288,7 +291,6 @@ Browse your REST API at http://localhost:3000/explorer
 
 ## 추가 리소스
 * [Hyperledger Fabric Docs](http://hyperledger-fabric.readthedocs.io/en/latest/)
-* [Hyperledger Composer Docs](https://hyperledger.github.io/composer/introduction/introduction.html)
 
 ## 라이센스
 [Apache 2.0](LICENSE)
