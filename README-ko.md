@@ -149,6 +149,7 @@ Admin 에서 ID Registry를 선택합니다.
 아래 이미지대로 따라합니다.
 
 우상단 `Issue New ID` 버튼을 클릭하면 다음과 같은 팝업이 나타납니다.
+
 ![Admin Tab](images/IssueIDScreen.png)
 
 다음과 같은 정보를 입력합니다.
@@ -158,7 +159,7 @@ ID Name 에는 `Seller`를 입력합니다. 참가자 란에는 "org.acme.produc
 이제 MamberA와 MbmberB의 ID를 발습합니다. (MemberA 의 ID 발급은 아래 그림을 참고하고, MemberB 에 대해서는 똑같은 방법으로 진행합니다.) 먼저 `Issue New ID`를 선택합니다. 입력란을 채우고 체크박스를 체크 후 `Create New` 버튼을 선택합니다.
 
 
-![MemberA의 Id를 월렛에 추가](images/identityA.png)
+![MemberA의 Id를 월렛에 추가](images/IdentityA.png)
 
 이 단계들을 모두 마쳤으면 화면이 다음과 같이 표시됩니다.
 
@@ -169,7 +170,10 @@ ID Name 에는 `Seller`를 입력합니다. 참가자 란에는 "org.acme.produc
 ![Select Id](images/selectid.png)
 
 이제 `Submit Transaction` 버튼을 클릭하여 드롭다운 박스 중에 `AddProduct` 트랜젝션을 선택하여 판매자용 상품을 생성합니다.
-![addproduct](images/addproduct1.png)
+
+<p align="center">
+  <img width="400" height="200" src="images/addproduct1.png">
+</p>
 
 ```
 {
@@ -199,9 +203,7 @@ ID Name 에는 `Seller`를 입력합니다. 참가자 란에는 "org.acme.produc
 
 각 `member id`에 대해 지금 우상단에 `Seller`라고 표시되는 탭에서 사용자 ID를 선택합니다. 왼쪽에서 MemberA 를 선택하고 그림처럼 `use now` 를 클릭합니다.
 
-<p align="center">
-  <img width="400" height="200" src="images/select-member.png">
-</p>
+![Id ](images/select-member.png)
 
 `Offer` 트랜잭션을 제출하기 위해 `test tab`을 선택하고 `Submit Transaction` 버튼을 클릭합니다. 드랍다운 목록에서 `Offer`를 선택합니다.
 
