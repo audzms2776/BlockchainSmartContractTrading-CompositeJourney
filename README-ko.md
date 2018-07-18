@@ -139,20 +139,37 @@ npm test
 ```
 
 이제 **Access Control**을 추가할 준비가 되었습니다. 먼저 `admin` 탭을 클릭하여 참가자에게 **새로운 ID**를 발급합니다. 주의: 생성한 ID는 자동으로 월렛에 추가됩니다.
-아래 이미지와 같이 지침을 따르십시오:
 
+Admin 에서 ID Registry를 선택합니다.
+다음과 같이 나타납니다.
+<p align="center">
+  <img width="400" height="200" src="images/IDRegistry.png">
+</p>
+
+아래 이미지대로 따라합니다.
+
+우상단 `Issue New ID` 버튼을 클릭하면 다음과 같은 팝업이 나타납니다.
 ![Admin Tab](images/IssueIDScreen.png)
 
+다음과 같은 정보를 입력합니다.
+ID Name 에는 `Seller`를 입력합니다. 참가자 란에는 "org.acme.product.auction.Seller#auction@acme.org"를 입력합니다. **주의**: `Seller`의 대소문자를 구별해서 입력해야 합니다. `Test` 페이지에서 참가자를 추가할때 대문자를 포함해서 넣었다면 여기서도 반드시 대소문자를 맞춰 넣어야 합니다. `Allow this ID to issue new IDs` 체크박스를 체크했는지 확인하고 `Create New` 버튼을 선택합니다.
 ![Generate New Id](images/generateNewId.png)
 
-![Ids to Wallet](images/idstowallet.png)
+이제 MamberA와 MbmberB의 ID를 발습합니다. (MemberA 의 ID 발급은 아래 그림을 참고하고, MemberB 에 대해서는 똑같은 방법으로 진행합니다.) 먼저 `Issue New ID`를 선택합니다. 입력란을 채우고 체크박스를 체크 후 `Create New` 버튼을 선택합니다.
 
-`Wallet tab`에서 `seller id`를 선택하십시오. `test tab`을 클릭하여 `AddProduct` 및 `StartBidding` 트랜잭션을 수행합니다.
+
+![MemberA의 Id를 월렛에 추가](images/identityA.png)
+
+이 단계들을 모두 마쳤으면 화면이 다음과 같이 표시됩니다.
+
+![월렛에 추가된 Id들](images/idtowallet.png)
+
+월렛 탭은 다음과 같이 표시됩니다. 그림과 같이 `Wallet tab`에서 `seller id`를 선택하십시오. `Seller` Id 의 상태가 `In Use` 인 것을 확인합니다. `test tab`을 클릭하여 `AddProduct` 및 `StartBidding` 트랜잭션을 수행합니다.
 
 ![Select Id](images/selectid.png)
 
 이제 `Submit Transaction` 버튼을 클릭하여 드롭다운 박스 중에 `AddProduct` 트랜젝션을 선택하여 판매자용 상품을 생성합니다.
-![addproduct](images/addproduct.png)
+![addproduct](images/addproduct1.png)
 
 ```
 {
@@ -164,7 +181,7 @@ npm test
 ```
 제품 및 판매자 레지스트리를 확인하여 트랜잭션을 확인할 수 있습니다.
 
-위의 제품에 대한 제품 목록을 작성하려면 `StartBidding` 트랜잭션을 제출합니다.
+위의 제품에 대한 제품 목록을 작성하려면 `StartBidding` 트랜잭션을 제출합니다. 다시 `Submit Transaction` 버튼을 선택하고 `Start Bidding` 트랜잭션을 드랍다운에서 고릅니다.
 
 ```
 {
@@ -175,16 +192,18 @@ npm test
 }
 ```
 
-귀하는 방금 `Sample Product`를 예비가격 50에 경매에 등록했습니다!
+귀하는 방금 `Sample Product - P1`를 예비가격 $50에 경매에 등록했습니다.
 상태가 `FOR_SALE`인 제품들은 `ProductListing` 레지스트리에 목록이 생성됩니다.
 
 이제 회원 참여자는 제품 리스트에 입찰하기 위해 `Offer` 트랜젝션을 제출할 수 있습니다.
 
 각 `member id`에 대해 지금 우상단에 `Seller`라고 표시되는 탭에서 사용자 ID를 선택합니다. 왼쪽에서 MemberA 를 선택하고 그림처럼 `use now` 를 클릭합니다.
 
-![사용자 선택](images/select-member.png)
+<p align="center">
+  <img width="400" height="200" src="images/select-member.png">
+</p>
 
-
+`Offer` 트랜잭션을 제출하기 위해 `test tab`을 선택하고 `Submit Transaction` 버튼을 클릭합니다. 드랍다운 목록에서 `Offer`를 선택합니다.
 
 ```
 {
@@ -194,6 +213,8 @@ npm test
   "member": "resource:org.acme.product.auction.Member#memberA@acme.org"
 }
 ```
+
+MemberB 사용자로 같은 내용을 반복합니다. `use now`를 눌러 레지스트리에서 `MemberB`를 선택하는 것을 잊지 말아야 합니다.
 
 ```
 {
@@ -208,7 +229,9 @@ npm test
 
 ![Product Offers](images/productoffers.png)
 
-이제 다시 `Wallet tab`탭에서 `seller id`를 선택합니다. `test tab`을 클릭하여 목록에 대한 `CloseBidding` 트랜잭션을 제출하여 경매를 종료하십시오.
+이제 다시 `Wallet tab`탭에서 `seller id`를 선택하고 `use now`로 설정합니다. `test tab`을 클릭하여 목록에 대한 `CloseBidding` 트랜잭션을 제출하여 경매를 종료하십시오.
+
+![Close Bid](images/closebid.png)
 
 ```
 {
@@ -221,11 +244,11 @@ npm test
 
 제품 판매 여부를 확인하려면 `ProductListing` 자산 레지스트리를 클릭하고 제품의 소유자를 확인해야 합니다. 최고 입찰액은 소유자인 `memberB@acme.org`가 제출했으므로 `memberB@acme.org`가 제품의 소유자여야 합니다.
 
-`l1`인 ProductListing의 상태가 `SOLD`인지 확인할 수 있습니다.
+`P1`인 ProductListing의 상태가 `SOLD`인지 확인할 수 있습니다.
 
 ![Product Listing Sold](images/soldlisting.png)
 
-구매자와 판매자의 업데이트된 자산 목록을 확인하려면 `Member` 자산 레지스트리를 클릭하십시오. 제품이 구매자인 `memberB@acme.org`의 제품 리스트에 추가됩니다.
+구매자와 판매자의 업데이트된 자산 목록을 확인하려면 `Member` 자산 레지스트리를 클릭하십시오. 제품이 구매자인 `memberB@acme.org`의 제품 리스트에 추가됩니다. MemberB 의 잔고가 $900 인지 확인합니다.
 
 ![New Owner of Product](images/newowner.png)
 
