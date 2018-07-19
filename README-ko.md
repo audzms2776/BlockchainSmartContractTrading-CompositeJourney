@@ -267,7 +267,8 @@ MemberB 사용자로 같은 내용을 반복합니다. `use now`를 눌러 레�
 cd dist
 composer network install --card PeerAdmin@hlfv1 --archiveFile product-auction.bna
 
-composer network start --networkName product-auction --networkVersion 0.0.1  --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card composer card import --file networkadmin.card
+composer network start --networkName product-auction --networkVersion 0.0.1  --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+composer card import --file networkadmin.card
 ```
 
 다음을 입력하여 네트워크 배포 여부를 확인할 수 있습니다:
